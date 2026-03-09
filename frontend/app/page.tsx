@@ -23,20 +23,24 @@ export default function Home() {
 
       <Navbar />
 
-      {/* HERO SECTION */}
+      {/* HERO */}
 
-      <section className="flex flex-col items-center text-center py-24 px-6">
+      <section className="flex flex-col items-center text-center py-28 px-6">
 
-        <h1 className="text-5xl font-bold text-[#3d4127] max-w-3xl">
-          AI Powered Radiology Screening Tool
+        <h1 className="text-5xl font-bold text-[#3d4127] max-w-3xl leading-tight">
+
+          AI Assisted Radiology Screening
+
         </h1>
 
-        <p className="mt-6 text-lg text-[#3d4127] max-w-2xl">
-          Upload radiology images and allow our multi-agent AI system to analyze
-          possible abnormalities. Designed for research and educational use.
+        <p className="mt-6 text-lg max-w-2xl opacity-90">
+
+          Upload radiology images and allow our multi-agent AI system
+          to analyze potential abnormalities.
+
         </p>
 
-        <button className="mt-8 px-8 py-4 bg-[#636b2f] text-[#d4de95] rounded-xl shadow-lg hover:scale-105 transition">
+        <button className="mt-10 px-10 py-4 bg-[#636b2f] text-[#d4de95] rounded-xl border-2 border-[#3d4127] shadow-lg hover:scale-105">
 
           Start Screening
 
@@ -44,27 +48,32 @@ export default function Home() {
 
       </section>
 
-      {/* BODY PART NAVIGATOR */}
+      {/* BODY AREA SELECTOR */}
 
-      <section className="px-10 pb-20">
+      <section className="px-10 pb-24">
 
-        <h2 className="text-3xl font-semibold text-center mb-12 text-[#3d4127]">
+        <h2 className="text-3xl font-semibold text-center mb-14">
+
           Select Body Area
+
         </h2>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-5xl mx-auto">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-10 max-w-6xl mx-auto">
 
           {bodyParts.map(({ name, icon: Icon }) => (
 
             <div
               key={name}
               onClick={() => setSelectedPart(name)}
-              className="bg-[#d4de95] rounded-2xl p-8 shadow-md hover:shadow-xl hover:-translate-y-1 transition cursor-pointer flex flex-col items-center"
+              className="bg-[#d4de95] border-2 border-[#636b2f] rounded-2xl p-10 shadow-md hover:shadow-xl hover:-translate-y-2 cursor-pointer flex flex-col items-center"
             >
 
-              <Icon size={40} className="text-[#636b2f] mb-4" />
+              <Icon
+                size={45}
+                className="text-[#636b2f] mb-4"
+              />
 
-              <h3 className="text-lg font-semibold text-[#3d4127]">
+              <h3 className="text-lg font-semibold">
                 {name}
               </h3>
 
