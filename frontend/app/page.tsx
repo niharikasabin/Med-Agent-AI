@@ -1,47 +1,89 @@
 "use client";
+
 import { useState } from "react";
-import UploadModal from "@/components/UploadModal";
 import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import UploadModal from "@/components/UploadModal";
+
+import { Brain, Bone, Activity, HeartPulse } from "lucide-react";
 
 export default function Home() {
 
   const [selectedPart, setSelectedPart] = useState<string | null>(null);
 
+  const bodyParts = [
+    { name: "Brain", icon: Brain },
+    { name: "Spine", icon: Activity },
+    { name: "Chest", icon: HeartPulse },
+    { name: "Bone", icon: Bone },
+  ];
+
   return (
-    <main className="min-h-screen bg-gray-50 flex flex-col items-center px-6 py-16">
+    <main className="min-h-screen">
 
-      <h1 className="text-4xl font-bold text-gray-800 text-center">
-        AI-Powered Medical Image Screening
-      </h1>
+      <Navbar />
 
-      <p className="mt-4 text-lg text-gray-600 text-center max-w-2xl">
-        A multi-agent AI research tool for screening radiology images.
-      </p>
+      {/* HERO SECTION */}
 
-      {/* Disease Navigator Grid */}
-      <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6">
+      <section className="flex flex-col items-center text-center py-24 px-6">
 
-        {["Brain", "Spine", "Chest", "Bone"].map((part) => (
-          <div
-            key={part}
-            onClick={() => setSelectedPart(part)}
-            className="bg-white p-6 rounded-2xl shadow-md hover:shadow-xl transition cursor-pointer text-center"
-          >
-            <h2 className="text-xl font-semibold text-gray-700">
-              {part}
-            </h2>
-          </div>
-        ))}
+        <h1 className="text-5xl font-bold text-[#3d4127] max-w-3xl">
+          AI Powered Radiology Screening Tool
+        </h1>
 
-      </div>
+        <p className="mt-6 text-lg text-[#3d4127] max-w-2xl">
+          Upload radiology images and allow our multi-agent AI system to analyze
+          possible abnormalities. Designed for research and educational use.
+        </p>
 
-      {/* Upload Modal */}
+        <button className="mt-8 px-8 py-4 bg-[#636b2f] text-[#d4de95] rounded-xl shadow-lg hover:scale-105 transition">
+
+          Start Screening
+
+        </button>
+
+      </section>
+
+      {/* BODY PART NAVIGATOR */}
+
+      <section className="px-10 pb-20">
+
+        <h2 className="text-3xl font-semibold text-center mb-12 text-[#3d4127]">
+          Select Body Area
+        </h2>
+
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-5xl mx-auto">
+
+          {bodyParts.map(({ name, icon: Icon }) => (
+
+            <div
+              key={name}
+              onClick={() => setSelectedPart(name)}
+              className="bg-[#d4de95] rounded-2xl p-8 shadow-md hover:shadow-xl hover:-translate-y-1 transition cursor-pointer flex flex-col items-center"
+            >
+
+              <Icon size={40} className="text-[#636b2f] mb-4" />
+
+              <h3 className="text-lg font-semibold text-[#3d4127]">
+                {name}
+              </h3>
+
+            </div>
+
+          ))}
+
+        </div>
+
+      </section>
+
       {selectedPart && (
         <UploadModal
           bodyPart={selectedPart}
           onClose={() => setSelectedPart(null)}
         />
       )}
+
+      <Footer />
 
     </main>
   );
